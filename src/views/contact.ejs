@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact Us - Car Specs</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+    <%- include('partials/navbar', { user: typeof user !== 'undefined' ? user : null }) %>
+
+    <main class="contact-main">
+        <h1>Get in Touch</h1>
+        <p>If you have any inquiries, feedback, or partnership requests, feel free to contact us.</p>
+
+        <form action="#" method="POST" class="contact-form">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required /><br><br>
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required /><br><br>
+
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="5" required></textarea><br><br>
+
+            <button type="submit">Send</button>
+        </form>
+
+        <!-- Ad Space -->
+        <div class="ad-space" style="margin-top: 2rem; text-align: center;">
+            <img src="/image/ad-placeholder.jpg" alt="Ad Placeholder" style="max-width: 100%; height: auto;" />
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

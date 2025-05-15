@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <main class="admin-container">
+        <h1><%= title %></h1>
+        <div class="admin-actions">
+            <a href="/admin/blog/new" class="btn-primary">+ Tambah Blog Baru</a>
+        </div>
+        
+        <% if (blogs && blogs.length > 0) { %>
+        <ul class="blog-list">
+            <% blogs.forEach(blog => { %>
+            <li class="blog-item">
+                <div class="blog-info">
+                    <h3><%= blog.title %></h3>
+                    <p class="blog-meta">
+                        <span class="category <%= blog.category %>"><%= blog.category %></span>
+                        <span class="date"><%= new Date(blog.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) %></span>
+                    </p>
+                    <% if (blog.image) { %>
+                    <div class="thumbnail">
+                        <!-- Perbaikan: Menampilkan pesan error jika gambar gagal dimuat -->
+                        <img src="<%= blog.image %>" alt="<%= blog.title %>" width="100" 
+                             onerror="this.onerror=null; this.src='/api/placeholder/100/60'; this.alt='Gambar tidak tersedia';">
+                    </div>
+                    <% } else { %>
+                    <div class="thumbnail">
+                        <p><em>Tidak ada gambar</em></p>
+                    </div>
+                    <% } %>
+                </div>
+                <div class="blog-actions">
+                    <a href="/admin/blog/edit/<%= blog.slug %>" class="btn-edit">Edit</a>
+                    <a href="/admin/blog/delete/<%= blog.slug %>" class="btn-delete" 
+                       onclick="return confirm('Yakin ingin menghapus blog ini?')">Hapus</a>
+                </div>
+            </li>
+            <% }) %>
+        </ul>
+        <% } else { %>
+        <p class="no-blogs">Belum ada blog. Silakan tambahkan blog baru.</p>
+        <% } %>
+    </main>
+</body>
+</html>

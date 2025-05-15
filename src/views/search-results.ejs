@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/css/styles.css">
+        <title><%= title %></title>
+    </head>
+    <body>
+  <h1>Hasil pencarian untuk: "<%= query %>"</h1>
+
+  <% if (results.length === 0) { %>
+    <p>Tidak ada hasil ditemukan.</p>
+  <% } else { %>
+    <ul>
+      <% results.forEach(mobil => { %>
+        <li>
+          <a href="/car/<%= mobil.slug %>">
+            <strong><%= mobil.name %></strong> - <%= mobil.brand %>
+          </a>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+</body>
+</html>

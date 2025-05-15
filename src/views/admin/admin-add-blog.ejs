@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tambah Blog Baru</title>
+        <link rel="stylesheet" href="/css/styles.css">
+    </head>
+    <body>
+        <main class="admin-form">
+            <h1>Tambah Blog Baru</h1>
+            <!-- Tambahkan enctype untuk upload file -->
+            <form action="/admin/blog" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Judul</label>
+                    <input type="text" name="title" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Slug (url-friendly)</label>
+                    <input type="text" name="slug" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Gambar</label>
+                    <!-- Ganti input text dengan input file -->
+                    <input type="file" name="image" accept="image/*" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Kategori</label>
+                    <!-- Ganti input text dengan dropdown -->
+                    <select name="category" required>
+                        <option value="">-- Pilih Kategori --</option>
+                        <option value="newest">Newest</option>
+                        <option value="hot">Hot</option>
+                        <option value="latest">Latest</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Konten</label>
+                    <textarea name="content" rows="8" required></textarea>
+                </div>
+
+                <button type="submit">Simpan</button>
+            </form>
+            <a href="/admin/blog">Kembali ke Daftar Blog</a>
+        </main>
+    </body>
+</html>

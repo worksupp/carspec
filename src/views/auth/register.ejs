@@ -1,0 +1,51 @@
+<!-- src/views/auth/register.ejs -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Register - Car Specs</title>
+    <link rel="stylesheet" href="/css/register.css">
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-header">
+            <h1>Buat Akun Baru</h1>
+            <p>Isi form di bawah untuk mendaftar</p>
+        </div>
+        
+        <% if (error) { %>
+            <div class="error-message">
+                <%= error %>
+            </div>
+        <% } %>
+        
+        <form action="/register" method="POST">
+            <div class="forms-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" class="forms-control" placeholder="Masukkan username Anda" required>
+            </div>
+            
+            <div class="forms-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" class="forms-control" placeholder="Masukkan email Anda" required>
+            </div>
+            
+            <div class="forms-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="forms-control" placeholder="Buat password" required>
+            </div>
+            
+            <div class="forms-group">
+                <label for="confirmPassword">Konfirmasi Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" class="forms-control" placeholder="Konfirmasi password Anda" required>
+            </div>
+            
+            <button type="submit" class="btn-register">Daftar</button>
+        </forms>
+        
+        <div class="login-link">
+            Sudah punya akun? <a href="/login">Masuk</a>
+        </div>
+    </div>
+</body>
+</html>

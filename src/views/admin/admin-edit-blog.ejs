@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Blog - <%= blog.title %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <main class="admin-form">
+        <h1>Edit Blog: <%= blog.title %></h1>
+        <form action="/admin/blog/edit/<%= blog.slug %>" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Judul</label>
+                <input type="text" id="title" name="title" value="<%= blog.title %>" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="category">Kategori</label>
+                <!-- Dropdown kategori dengan nilai terpilih -->
+                <select id="category" name="category" required>
+                    <option value="">-- Pilih Kategori --</option>
+                    <option value="newest" <%= blog.category === 'newest' ? 'selected' : '' %>>Newest</option>
+                    <option value="hot" <%= blog.category === 'hot' ? 'selected' : '' %>>Hot</option>
+                    <option value="latest" <%= blog.category === 'latest' ? 'selected' : '' %>>Latest</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Konten</label>
+                <textarea name="content" rows="10" required><%= blog.content %></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Gambar Saat Ini:</label>
+                <% if (blog.image) { %>
+                <div class="current-image">
+                    <!-- Menambahkan error handling jika gambar tidak bisa dimuat -->
+                    <img src="<%= blog.image %>" alt="Gambar Blog" width="200" 
+                         onerror="this.onerror=null; this.src='/api/placeholder/200/150'; this.alt='Gambar tidak tersedia';">
+                    <div class="image-options">
+                        <label>
+                            <input type="checkbox" name="deleteImage"> Hapus gambar lama saat mengunggah yang baru
+                        </label>
+                    </div>
+                </div>
+                <% } else { %>
+                <p>Tidak ada gambar</p>
+                <% } %>
+            </div>
+            
+            <div class="form-group">
+                <label>Ganti Gambar (opsional):</label>
+                <input type="file" name="image" accept="image/*" onchange="previewImage(this)">
+                <small>Biarkan kosong jika tidak ingin mengganti gambar.</small>
+                <!-- Simpan nama file gambar lama dalam hidden field -->
+                <input type="hidden" name="oldImage" value="<%= blog.image %>">
+                
+                <!-- Preview gambar baru -->
+                <div id="imagePreview" style="margin-top: 10px; display: none;">
+                    <p>Preview Gambar Baru:</p>
+                    <img id="preview" src="#" alt="Preview Gambar Baru" style="max-width: 200px; max-height: 150px;">
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Simpan Perubahan</button>
+                <a href="/admin/blog" class="btn-secondary">Batal</a>
+            </div>
+        </form>
+    </main>
+    
+    <!-- Script untuk preview gambar -->
+    <script>
+        function previewImage(input) {
+            const preview = document.getElementById('preview');
+            const previewDiv = document.getElementById('imagePreview');
+            
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    previewDiv.style.display = 'block';
+                };
+                
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                previewDiv.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

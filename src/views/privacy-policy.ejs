@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy Policy - Car Specs</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+    <%- include('partials/navbar', { user: typeof user !== 'undefined' ? user : null }) %>
+
+    <main class="privacy-main">
+        <h1>Privacy Policy</h1>
+        <h2>Your Privacy Matters</h2>
+        <p>Your privacy is important to us. We respect your privacy and are committed to protecting it...</p>
+        <p>We do not sell your personal data to third parties. Data collected is solely used to improve user experience and site performance.</p>
+        <p>For questions about this privacy policy, please contact us.</p>
+    </main>
+
+    <!-- Ad Space -->
+    <div class="ad-space" style="margin-top: 2rem; text-align: center;">
+        <img src="/image/ad-placeholder.jpg" alt="Ad Placeholder" style="max-width: 100%; height: auto;" />
+    </div>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

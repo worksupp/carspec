@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= car.name %> - Car Specs</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1><%= car.name %></h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog">Blog</a>
+            <a href="/contact">Contact</a>
+            <a href="/privacy-policy">Privacy Policy</a>
+        </nav>
+    </header>
+
+    <main class="car-detail-container">
+        <div main="car-specs">
+            <h2>Specifications</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li><strong>Engine:</strong> <%= car.engine %></li>
+                <li><strong>Power:</strong> <%= car.power %></li>
+                <li><strong>Price List:</strong> <%= car.pricelist %></li>
+            </ul>
+        </div>
+
+        <!--Img Car-->
+        <div class="slider">
+            <img id="main-image" src="<%= car.images[0] %>" alt="Main Image"     
+            <div class="thumbnails">
+                <% car.images.forEach((img, index) => { %>
+                    <img
+                        src="<%= img %>"
+                        class="thumbnail <% if (index === 0) { %> active <% } %>"
+                        onclick="changeImage('<%= img %>', this)">
+                <% }); %>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Space for ads -->
+    <div style="margin-top: 2rem; text-align: center;">
+        <img src="/image/ad-placeholder.jpg" alt="Ad Placeholder" style="max-width:100%; height:auto;">
+     </div>
+
+    <footer>
+        <p>&copy; <%= new Date().getFullYear() %></p>
+    </footer>
+
+        <script>
+            function changeImage(src, thumbnail) {
+                const mainImage = document.getElementById('main-image');
+                const thumbnails = document.querySelectorAll('.thumbnail');
+                
+                mainImage.classList.add('fade-out');
+
+                setTimeout(() => {
+                    mainImage.src = src;
+                    mainImage.classList.remove('fade-out');
+                }, 150); 
+
+                thumbnails.forEach(img => img.classList.remove('active'));
+                thumbnail.classList.add('active');
+            }
+        </script>
+</body>
+</html>

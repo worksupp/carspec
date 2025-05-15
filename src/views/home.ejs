@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <%- include('partials/navbar') %>
+
+  <!-- Full width hero section -->
+  <section class="home-hero">
+    <h2>Welcome to Our Showroom</h2>
+    <p>Search or browse cars by brand and model.</p>
+  </section>
+
+  <!-- Ads section -->
+  <section class="ads-section">
+    <img src="/ads/sample-ad.jpg" alt="Ad space" class="ads-image" />
+  </section>
+
+  <!-- Popular Cars Section -->
+  <section class="popular-cars">
+    <h2>Popular Cars</h2>
+    <div class="car-grid">
+      <% popularCars.forEach(car => { %>
+        <a href="/car/<%= car.slug %>" class="car-card">
+          <img src="<%= car.images[0] %>" alt="<%= car.name %>" />
+          <p><%= car.name %></p>
+        </a>
+      <% }) %>
+    </div>
+  </section>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

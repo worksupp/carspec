@@ -1,0 +1,42 @@
+<header class="navbar">
+  <div class="container">
+    <div class="logo"><a href="/">Car Specs</a></div>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="/">Home</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact">Contact</a>
+      <a href="/privacy-policy">Privacy Policy</a>
+    </nav>
+
+    <div class="search-auth">
+      <form action="/search" method="get" class="search-form">
+        <input type="text" name="q" placeholder="Search Car..." required />
+        <button type="submit">🔍</button>
+      </form>
+
+      <div class="auth">
+        <% if (user) { %>
+          <span class="welcome-text">Hi, <%= user.username %></span>
+          <a href="/logout" class="btn">Logout</a>
+        <% } else { %>
+          <a href="/login" class="btnlog">Login</a>
+          <a href="/register" class="btnreg">Register</a>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- Hamburger Menu for Mobile -->
+    <div class="hamburger" onclick="toggleNav()">☰</div>
+  </div>
+</header>
+
+<!-- Letakkan script ini tepat sebelum tag </body> -->
+<script>
+  function toggleNav() {
+    const navLinks = document.querySelector('.nav-links');
+    const searchAuth = document.querySelector('.search-auth');
+    navLinks.classList.toggle('active');
+    searchAuth.classList.toggle('active');
+  }
+</script>

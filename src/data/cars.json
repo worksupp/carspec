@@ -1,0 +1,41 @@
+[
+    {
+        "slug": "toyota-corolla-2020",
+        "name": "Toyota Corolla XII (E210) 1.5 Dynamic Force (125 HP)",
+        "engine": "1.L I3 Dynamic Force",
+        "power": "125 HP",
+        "images": [
+            "/image/toyota-corolla-2020.jpg",
+            "/image/corolla-back.jpg",
+            "/image/corolla-side-right.jpg",
+            "/image/corolla-side-left.jpg"
+        ]
+    },
+    {
+        "slug": "honda-civic-2021",
+        "name": "Honda Civic",
+        "brand": "Honda",
+        "Category" : "Sedan",
+        "engine": "1.5L VTEC Turbo (182 HP)",
+        "power": "182 HP",
+        "pricelist": "$1",
+        "images": [
+            "/image/honda-civic-turbo.jpg",
+            "/image/civic-back.jpg",
+            "/image/civic-right-side.jpg",
+            "/image/civic-left-side.jpg"
+        ]
+    },
+    {
+        "slug": "mazda-3-hatchback",
+        "name": "Mazda 3 (BP) 2.0 Skyactiv-G (150 HP)",
+        "engine": "2.0L Skyactiv-G",
+        "power": "150 HP",
+        "images": [
+            "",
+            "",
+            "",
+            ""
+        ]
+    }
+]

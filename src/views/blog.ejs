@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <%- include('partials/navbar', { user: typeof user !== 'undefined' ? user : null }) %>
+
+
+  <div class="blog-container">
+    <main class="blog-main">
+      <section class="search-section">
+        <form method="get" action="/blog">
+          <input type="text" name="q" placeholder="Search blog...." value="<%= query || '' %>" />
+
+          <select name="category">
+            <option value="">ALL Categories</option>
+            <% categories.forEach(cat => { %>
+              <option value="<%= cat %>" <%= category === cat ? 'selected' : '' %>><%= cat %></option>
+            <% }) %>
+          </select>
+
+          <div class="pagination">
+            <% if (currentPage > 1) { %>
+              <a href="?q=<%= query || '' %>&category=<%= category || '' %>&page=<%= currentPage - 1 %>" class="page-link">Previous</a>
+            <% } else { %>
+              <span class="page-disabled">Previous</span>
+            <% } %>
+
+            <% for (let i = 1; i <= totalPages; i++) { %>
+              <% if (i === currentPage) { %>
+                <span class="page-current"><%= i %></span>
+              <% } else { %>
+                <a href="?q=<%= query || '' %>&category=<%= category || '' %>&page=<%= i %>" class="page-link"><%= i %></a>
+              <% } %>
+            <% } %>
+
+            <% if (currentPage < totalPages) { %>
+              <a href="?q=<%= query || '' %>&category=<%= category || '' %>&page=<%= currentPage + 1 %>" class="page-link">Next</a>
+            <% } else { %>
+              <span class="page-disabled">Next</span>
+            <% } %>
+          </div>
+
+          <button class="search-blog" type="submit">Search</button>
+        </form>
+      </section>
+
+      <section class="blog-list">
+        <% if (blogs.length === 0) { %>
+          <p>No blog posts found.</p>
+        <% } else { %>
+          <% blogs.forEach(blog => { %>
+            <article class="blog-card">
+              <h2><a href="/blog/<%= blog.slug %>"><%= blog.title %></a></h2>
+              <p><%= blog.excerpt %></p>
+              <p><small>Published on <%= blog.date %></small></p>
+            </article>
+          <% }) %>
+        <% } %>
+      </section>
+    </main>
+
+    <aside class="blog-sidebar">
+      <div class="sidebar-section">
+        <h3>Kategori</h3>
+        <ul>
+          <% categories.forEach(cat => { %>
+            <li><a href="/blog?category=<%= cat %>"><%= cat %></a></li>
+          <% }) %>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Artikel Terbaru</h3>
+        <ul>
+          <% blogs.slice(0, 5).forEach(blog => { %>
+            <li><a href="/blog/<%= blog.slug %>"><%= blog.title %></a></li>
+          <% }) %>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <section class="ads-section">
+    <img src="/ads/sample-ad.jpg" alt="Ad space" class="ads-image" />
+  </section>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

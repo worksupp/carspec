@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width", initial-scale="1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+    <header>
+        <h1> Car Specs Blog</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog">Blog</a>
+            <a href="/contact">Contact</a>
+            <a href="/privacy-policy">Privacy Policy</a>
+        </nav>
+    </header>
+
+    <main class="blog-detail">
+        <h2><%= blog.title %></h2>
+        <p><small>Published on <%= blog.date %></small></p>
+        <img src="<%= blog.image %>" alt="<%= blog.title %>" class="blog-image" />
+        <div class="blog-content">
+            <%- blog.content %> 
+        </div>
+    </main>
+
+    <section class="comments">
+        <h3>Comments</h3>
+        <% if (comments.length === 0) { %>
+            <p>No comments yet.</p>
+        <% } else { %> 
+            <% comments.forEach(comment => { %>
+            <div class="comment <%= comment.flagged ?  'flagged' : '' %>">
+                <strong><%= comment.name %></strong>
+                <small><%= new Date(comment.date).toLocaleDateString() %></small>
+                <p><%= comment.message %></p>
+            </div>
+            <% }) %>
+        <% } %>
+    </section>
+
+    <% if (query.error) { %>
+        <div class="comment-error">Comments get hide to form comments, FUCK YOU BITCH!!!</div>
+    <% } %>
+
+    <section class="comment-form">
+        <h4> Leave a Comment</h4>
+        <form action="/blog/<%= blog.slug %>/comment" method="POST">
+            <input type="text" name="name" placeholder="Your name" required />
+            <textarea name="message" placeholder="Your comment" rows="4" required></textarea>
+            <button type="submit">Post Comment</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; <%= new Date().getFullYear() %> Car Specs</p>
+    </footer>
+</body>
+</html>

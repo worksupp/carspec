@@ -1,0 +1,41 @@
+<!-- src/views/auth/login.ejs -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Car Specs</title>
+    <link rel="stylesheet" href="/css/login.css"> 
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Masuk ke Akun Anda</h1>
+            <p>Masukkan detail login Anda untuk melanjutkan</p>
+        </div>
+        
+        <% if (error) { %>
+            <div class="error-message">
+                <%= error %>
+            </div>
+        <% } %>
+        
+        <form action="/login" method="POST">
+            <div class="forms-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" class="forms-control" placeholder="Masukkan email Anda" required>
+            </div>
+            
+            <div class="forms-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="forms-control" placeholder="Masukkan password Anda" required>
+            </div>
+            
+            <button type="submit" class="btn-login">Masuk</button>
+        </forms>
+        
+        <div class="register-link">
+            Belum punya akun? <a href="/register">Daftar Sekarang</a>
+        </div>
+    </div>
+</body>
+</html>
